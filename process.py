@@ -100,7 +100,7 @@ class Process(object):
         # start calculating after the first 10 frames
         if L == self.buffer_size:
             
-            self.fps = float(L) / (self.times[-1] - self.times[0])#calculate HR using a true fps of processor of the computer, not the fps the camera provide
+            self.fps = float(L) / (self.times[-1] - self.times[0])#calculate RR using a true fps of processor of the computer, not the fps the camera provide
             even_times = np.linspace(self.times[0], self.times[-1], L)
             
             processed = signal.detrend(processed)#detrend the signal to avoid interference of light change
