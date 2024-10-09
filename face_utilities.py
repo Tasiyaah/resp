@@ -204,7 +204,7 @@ class Face_utilities():
         
         return remapped_shape       
     
-    def no_age_gender_face_process(self, frame, type):
+    def normal_face_process(self, frame, type):
      
         if(type=="5"):
             shape, rects = self.get_landmarks(frame, "5")
