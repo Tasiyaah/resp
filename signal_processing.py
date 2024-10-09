@@ -9,7 +9,6 @@ class Signal_processing():
         self.a = 1
         
     def extract_color(self, ROIs):
-       
         g = []
         for ROI in ROIs:
             g.append(np.mean(ROI))
@@ -48,16 +47,10 @@ class Signal_processing():
         return interpolated_data
         
     def fft(self, data_buffer, fps):
-        '''
-        
-        '''
-        
         L = len(data_buffer)
-        
         freqs = float(fps) / L * np.arange(L / 2 + 1)
-        
         freqs_in_minute = 60. * freqs
-        
+
         raw_fft = np.fft.rfft(data_buffer*30)
         fft = np.abs(raw_fft)**2
         
