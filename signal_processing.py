@@ -12,7 +12,7 @@ class Signal_processing():
        
         g = []
         for ROI in ROIs:
-            g.append(np.mean(ROI[:,:,1]))
+            g.append(np.mean(ROI))
         output_val = np.mean(g)
         return output_val
     
