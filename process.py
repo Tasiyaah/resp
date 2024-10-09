@@ -14,7 +14,7 @@ class Process(object):
         self.frame_ROI = np.zeros((10, 10, 3), np.uint8)
         self.frame_out = np.zeros((10, 10, 3), np.uint8)
         self.samples = []
-        self.buffer_size = 100
+        self.buffer_size = 200
         self.times = [] 
         self.data_buffer = []
         self.fps = 0
