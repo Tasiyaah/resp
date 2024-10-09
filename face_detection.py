@@ -17,7 +17,7 @@ class FaceDetection(object):
         mask = np.zeros((10, 10, 3), np.uint8)
         ROI1 = np.zeros((10, 10, 3), np.uint8)
         ROI2 = np.zeros((10, 10, 3), np.uint8)
-        #ROI3 = np.zeros((10, 10, 3), np.uint8)
+        ROI3 = np.zeros((10, 10, 3), np.uint8)
         status = False
         
         if frame is None:
@@ -46,13 +46,9 @@ class FaceDetection(object):
             if y<0:
                 print("a")
                 return frame, face_frame, ROI1, ROI2, status, mask
-            #if i==0:
+           
             face_frame = frame[y:y+h,x:x+w]
-                # show the face number
-                #cv2.putText(frame, "Face #{}".format(i + 1), (x - 10, y - 10),
-                #    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-                # loop over the (x, y)-coordinates for the facial landmarks
-                # and draw them on the image
+               
                 
             # for (x, y) in shape:
                 # cv2.circle(frame, (x, y), 1, (0, 0, 255), -1) #draw facial landmarks
@@ -82,36 +78,21 @@ class FaceDetection(object):
                 ROI2 =  face_frame[shape[29][1]:shape[33][1], #left cheek
                         shape[4][0]:shape[48][0]]    
 
-                # ROI3 = face_frame[shape[29][1]:shape[33][1], #nose
+                ROI3 = face_frame[shape[29][1]:shape[33][1], #nose
                         # shape[31][0]:shape[35][0]]
                 
-                #get the shape of face for color amplification
+                #get the shape of face
                 rshape = np.zeros_like(shape) 
                 rshape = self.face_remap(shape)    
                 mask = np.zeros((face_frame.shape[0], face_frame.shape[1]))
             
-                cv2.fillConvexPoly(mask, rshape[0:27], 1) 
-                # mask = np.zeros((face_frame.shape[0], face_frame.shape[1],3),np.uint8)
-                # cv2.fillConvexPoly(mask, shape, 1)
-                
-            #cv2.imshow("face align", face_frame)
-            
-            # cv2.rectangle(frame,(shape[54][0], shape[29][1]), #draw rectangle on right and left cheeks
-                    # (shape[12][0],shape[54][1]), (0,255,0), 0)
-            # cv2.rectangle(frame, (shape[4][0], shape[29][1]), 
-                    # (shape[48][0],shape[48][1]), (0,255,0), 0)
-            
-            # ROI1 = frame[shape[29][1]:shape[54][1], #right cheek
-                    # shape[54][0]:shape[12][0]]
-                    
-            # ROI2 =  frame[shape[29][1]:shape[54][1], #left cheek
-                    # shape[4][0]:shape[48][0]]   
+                cv2.fillConvexPoly(mask, rshape[0:27], 1)  
                 
         else:
             cv2.putText(frame, "No face detected",
                        (200,200), cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 0, 255),2)
             status = False
-        return frame, face_frame, ROI1, ROI2, status, mask    
+        return frame, face_frame, ROI1, ROI2,ROI3, status, mask    
     
     # some points in the facial landmarks need to be re-ordered
     def face_remap(self,shape):
