@@ -41,7 +41,7 @@ class Process(object):
         # frame, face_frame, ROI1, ROI2, status, mask = self.fd.face_detect(self.frame_in)
         
         frame = self.frame_in
-        ret_process = self.fu.no_age_gender_face_process(frame, "5")
+        ret_process = self.fu.normal_face_process(frame, "5")
         if ret_process is None:
             return False
         rects, face, shape, aligned_face, aligned_shape = ret_process
